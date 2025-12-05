@@ -1,28 +1,29 @@
-import React from "react";
+
+import React, { useState, useEffect } from "react";
 
 //include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+
 
 //create your first component
 const Home = () => {
+	const [currentLight, setCurrentLight] = useState("");
+
+	useEffect(() => {
+		if (currentLight === "🔴"){
+		console.log("No puedes pasar");}
+		else if (currentLight === "🟠"){
+			console.log("Precaución");}
+			else console.log("Puedes pasar")
+	}, [currentLight]);
+
 	return (
-		<div className="text-center">
-            
-
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="text-center container">
+			
+			<br></br>
+			<h2 class="red-light" onClick={() => setCurrentLight("🔴")}style={{ filter: currentLight === "🔴" ? "drop-shadow(0 0 15px red)" : "none" }}>🔴</h2>
+			<h3 class="orange-light" onClick={() => setCurrentLight("🟠")}style={{ filter: currentLight === "🟠" ? "drop-shadow(0 0 15px orange)" : "none" }}>🟠</h3>
+			<h4 class="green-light" onClick={() => setCurrentLight("🟢")}	style={{ filter: currentLight === "🟢" ? "drop-shadow(0 0 15px green)" : "none" }}>🟢</h4>
 		</div>
-	);
+	)
 };
-
 export default Home;
